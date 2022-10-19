@@ -45,12 +45,24 @@ for result in result_os.split('\n'):
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+import os
+
+basedir = ("C:\\Netology\\Python\\Scripts")
+bash_command = [f"cd {basedir}", "git status "]
+result_os = os.popen(' && '.join(bash_command)).read()
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = result.replace('modified:', basedir)
+        print(prepare_result)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+C:\Netology\Python\Scripts   file.txt
+C:\Netology\Python\Scripts   main.py
+![image](https://user-images.githubusercontent.com/109212419/196781704-deb52136-8fce-4aad-a12f-f27951c448c3.png)
+
 ```
 
 ## Обязательная задача 3
