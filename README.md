@@ -70,12 +70,31 @@ C:\Netology\Python\Scripts   main.py
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+import os
+import sys
+path = os.getcwd()                              #текущий каталог
+if len(sys.argv) != 1:
+    path = sys.argv[1]
+bash_command = [f'cd {path}', 'git status 2>&1']
+result_os = os.popen(' && '.join(bash_command)).read()
+for result in result_os.split('\n'):
+    if result.find('fatal') != -1:
+        print('Каталог не является GIT репозиторием')
+    if result.find('modified') != -1:
+        prepare_result = result.replace('\tmodified: ', '')
+        print('ПУТЬ К РЕПОЗИТОРИЮ ', os.getcwd(),'/ ИЗМЕНЕННЫЕ ФАЙЛЫ', prepare_result, sep='')
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+"C:\Netology\Python\Scripts\virtual interpretator\Scripts\python.exe" C:/Netology/Python/Scripts/main.py
+ПУТЬ К РЕПОЗИТОРИЮ C:\Netology\Python\Scripts/ ИЗМЕНЕННЫЕ ФАЙЛЫ  file.txt
+ПУТЬ К РЕПОЗИТОРИЮ C:\Netology\Python\Scripts/ ИЗМЕНЕННЫЕ ФАЙЛЫ  main.py
+
+"C:\Netology\Python\pythonProject\virtual interpretator\Scripts\python.exe" C:/Netology/Python/pythonProject/main.py
+Каталог не является GIT репозиторием
+
 ```
 
 ## Обязательная задача 4
