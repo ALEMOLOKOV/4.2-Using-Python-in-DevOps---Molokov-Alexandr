@@ -61,7 +61,7 @@ for result in result_os.split('\n'):
 ```
 C:\Netology\Python\Scripts   file.txt
 C:\Netology\Python\Scripts   main.py
-![image](https://user-images.githubusercontent.com/109212419/196781704-deb52136-8fce-4aad-a12f-f27951c448c3.png)
+
 
 ```
 
@@ -83,12 +83,35 @@ C:\Netology\Python\Scripts   main.py
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+
+import socket
+import time
+
+hosts = {'drive.google.com':'0.0.0.0', 'mail.google.com':'0.0.0.0', 'google.com':'0.0.0.0'}
+while True:
+    for host in hosts:
+        ip = socket.gethostbyname(host)
+        if ip != hosts[host]:
+            print(' [ВНИМАНИЕ] ' + str(host) +' НЕСООТВЕТСТВИЕ: СТРАРЫЙ IP : '+hosts[host]+' НОВЫЙ IP '+ip)
+            hosts[host] = ip
+        else:
+            print(str(host) + ' ТЕКУЩИЙ IP ' + ip)
+    time.sleep(2)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+"C:\Netology\Python\Scripts\virtual interpretator\Scripts\python.exe" C:/Netology/Python/Scripts/main.py
+ [ВНИМАНИЕ] drive.google.com НЕСООТВЕТСТВИЕ: СТРАРЫЙ IP : 0.0.0.0 НОВЫЙ IP 142.251.1.194
+ [ВНИМАНИЕ] mail.google.com НЕСООТВЕТСТВИЕ: СТРАРЫЙ IP : 0.0.0.0 НОВЫЙ IP 216.58.210.133
+ [ВНИМАНИЕ] google.com НЕСООТВЕТСТВИЕ: СТРАРЫЙ IP : 0.0.0.0 НОВЫЙ IP 216.58.210.142
+drive.google.com ТЕКУЩИЙ IP 142.251.1.194
+mail.google.com ТЕКУЩИЙ IP 216.58.210.133
+google.com ТЕКУЩИЙ IP 216.58.210.142
+drive.google.com ТЕКУЩИЙ IP 142.251.1.194
+mail.google.com ТЕКУЩИЙ IP 216.58.210.133
+google.com ТЕКУЩИЙ IP 216.58.210.142
 ```
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
